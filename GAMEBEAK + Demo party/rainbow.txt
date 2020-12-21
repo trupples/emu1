@@ -1,0 +1,89 @@
+add r0, r0, r0
+add r20, r0, 32
+add r21, r0, 32
+
+lbl 00001
+
+add r12, r0, 0
+
+lbl 00002
+
+
+	add r10, r0, 0
+	lbl 01000
+
+		io 22, r10
+
+		add r11, r0, 0
+		lbl 01001
+
+			io 21, r11
+
+			add r1, r10, r11
+			add r1, r1, r12
+			io 23, r1
+
+		add r11, r11, 1
+		cmpeq r11, 0
+		- jup 01001	
+
+	add r10, r10, 1
+	cmpeq r10, 0
+	- jup 01000
+
+// draw character
+
+//add r10, r20, -2
+//lbl 01000
+
+//	add r11, r21, -2
+//	lbl 01001
+
+//		io 21, r10
+//		io 22, r11
+//		io 23, r0
+
+//	add r11, r11, 1
+//	sub r1, r11, r21
+//	cmpeq r1, 3
+//	- jup 01001
+
+//add r10, r10, 1
+//sub r1, r10, r20
+//cmpeq r1, 3
+//- jup 01000
+
+// dpad move position (r20, r21)
+//io r1, 24
+
+//and r2, r1, 1
+//cmpne r2, 0
+//+ add r20, r20, 1
+
+//and r2, r1, 2
+//cmpne r2, 0
+//+ add r20, r20, -1
+
+//and r2, r1, 4
+//cmpne r2, 0
+//+ add r21, r21, 1
+
+//and r2, r1, 8
+//cmpne r2, 0
+//+ add r21, r21, -1
+
+//and r2, r1, 16
+//cmpne r2, 0
+//+ jup 00001
+
+// advance frame
+add r12, r12, 1
+
+// short sleep
+add r1, r0, 1
+io 3, r1
+lbl 01000
+io r1, 3
+cmpul r1, 3
++ jup 01000
+jup 00002

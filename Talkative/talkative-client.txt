@@ -1,0 +1,126 @@
+// Client
+
+
+// NAMEMESSAGEMESSAGEMESSAGEMESSAGEMESSAGEM
+// print("Username? ")
+// netbuf[0:4] = input()
+// serial_ptr = netbuf + 4
+// while 1:
+// 	if serial_available > 1:
+// 		serial_chr = serial_read()
+// 		*serial_ptr = serial_chr
+// 		serial_ptr += 1
+// 		if serial_chr == '\n' or serial_ptr == netbuf+40:
+// 			for(i = netbuf; i < serial_ptr; i++)
+// 				net_send(*i)
+// 			for(; i<netbuf+40; i++)
+// 				net_send(' ')
+// 			serial_ptr = netbuf+4
+// 
+// 	if net_availavle > 1:
+// 		net_chr = net_recv()
+// 		serial_write(net_chr)
+
+
+
+add r1, r0, \U
+io 2, r1
+add r1, r0, \S
+io 2, r1
+add r1, r0, \E
+io 2, r1
+add r1, r0, \R
+io 2, r1
+add r1, r0, \N
+io 2, r1
+add r1, r0, \A
+io 2, r1
+add r1, r0, \M
+io 2, r1
+add r1, r0, \E
+io 2, r1
+add r1, r0, \?
+io 2, r1
+add r1, r0, \SP
+io 2, r1
+
+lbl 01000
+io r1, 0
+cmpul r1, 4
++ jup 01000
+
+add r2, r0, 14
+
+// read 4 char username
+io r10, 1
+io r11, 1
+io r12, 1
+io r13, 1
+
+// skip to next newline
+lbl 01001
+io r1, 1
+cmpeq r1, \LF
+- jup 01001
+
+lbl 01000
+
+	// check serial incoming
+	io r1, 0
+	cmpeq r1, 0
+	+ jdn 01001
+
+		// read one into buf
+		io r1, 1
+		st [r2], r1
+		add r2, r2, 1
+
+		// if newline or buf full
+		cmpne r1, \LF
+
+		- add r1, r0, \SP
+		- sub r2, r2, 1
+		- st [r2], r1
+		
+		+ cmpul r2, 50
+		
+		+ jdn 01001
+
+		// send buf over network
+		add r3, r0, 10
+		lbl 01002
+
+			ld r1, [r3]
+			io 012, r1
+
+		add r3, r3, 1
+		cmpul r3, r2
+		+ jup 01002
+
+		// and send space padding
+		add r1, r0, \SP
+		lbl 01002
+		cmpul r3, 50
+		- jdn 01002
+
+			io 012, r1
+
+		add r3, r3, 1
+		jup 01002
+		lbl 01002
+
+		// reset buf pointer
+		add r2, r0, 14
+
+	lbl 01001
+
+	io r1, 010
+	cmpeq r1, 0
+	+ jup 01000
+
+	io r1, 011
+	io 002, r1
+
+	jup 01001
+
+jup 01000

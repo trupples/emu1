@@ -1,0 +1,217 @@
+// Server
+
+//while 1:
+//	net_next_client()
+//	if net_available() >= 40:
+//		recv 4 -> netbuf
+//		netbuf[4, 5] = ": "
+//		recv 36 -> netbuf + 5
+//		net_mark_client()
+//
+//		while net_next_client() != 1:
+//			for(i = netbuf; i < netbuf + 42; i++) net_send(*i)
+//
+//		net_next_client()
+
+// ": " -> netbuf + 4
+add r12, r0, 075
+add r13, r0, \SP
+
+lbl 01000
+
+// next client
+add r1, r0, 2
+io 013, r1
+
+// check if we can recv full message
+io r1, 010
+cmpul r1, 40
++ jup 01000
+
+add r50, r0, \LF
+
+// recv(4) -> netbuf
+io r8, 011
+io r9, 011
+io r10, 011
+io r11, 011
+
+
+add r2, r0, 14
+
+// recv(36) -> netbuf + 6
+lbl 01001
+
+	io r1, 011
+	st [r2], r1
+
+add r2, r2, 1
+cmpul r2, 50
++jup 01001
+
+add r2, r0, 8
+
+// print(netbuf)
+lbl 01001
+
+	ld r1, [r2]
+	io 2, r1
+
+add r2, r2, 1
+cmpul r2, 51
++jup 01001
+
+// compare with magic value
+// YMAS: I MIGHT BE BETTER THAN X-MAS LOLOLOL
+// X-MAS{4ND N3I7H#R D0 THE!R MAKER$S}
+// X-MAS{Y0U-$UR3-AS-H#LL-4REN'T!!1!!}
+
+cmpeq r0, r0
+// TODO: shuffle
++ cmpeq r24, \SP
++ cmpeq r21, \SP
++ cmpeq r40, \A
++ cmpeq r45, \L
++ cmpeq r11, \S
++ cmpeq r27, \T
++ cmpeq r23, \E
++ cmpeq r39, \M
++ cmpeq r34, \A
++ cmpeq r29, \E
++ cmpeq r14, \I
++ cmpeq r35, \N
++ cmpeq r43, \L
++ cmpeq r9, \M
++ cmpeq r8, \Y
++ cmpeq r17, \I
++ cmpeq r18, \G
++ cmpeq r36, \SP
++ cmpeq r47, \L
++ cmpeq r20, \T
++ cmpeq r44, \O
++ cmpeq r16, \M
++ cmpeq r15, \SP
++ cmpeq r22, \B
++ cmpeq r38, \-
++ cmpeq r48, \O
++ cmpeq r26, \E
++ cmpeq r49, \L
++ cmpeq r37, \X
++ cmpeq r46, \O
++ cmpeq r32, \T
++ cmpeq r25, \B
++ cmpeq r41, \S
++ cmpeq r19, \H
++ cmpeq r33, \H
++ cmpeq r31, \SP
++ cmpeq r28, \T
++ cmpeq r10, \A
++ cmpeq r42, \SP
++ cmpeq r30, \R
++ jdn 07777
+
+
+// mark connection
+add r1, r0, 1
+io 013, r1
+
+// broadcast
+lbl 01001
+
+add r1, r0, \X
+io 2, r1
+
+add r1, r0, 2
+io r1, 013, r1
+
+cmpeq r1, 1
++ jdn 01001
+
+	// send netbuf to client
+	add r2, r0, 8
+	lbl 01002
+
+		ld r1, [r2]
+		io 012, r1
+
+	add r2, r2, 1
+	cmpul r2, 51
+	+jup 01002
+
+jup 01001
+lbl 01001
+
+jdn 01000
+
+lbl 07777
+
+add r8, r0, \X
+add r9, r0, \-
+add r10, r0, \M
+add r11, r0, \A
+add r12, r0, \S
+add r13, r0, \{
+
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+halt
+
+add r14, r0, \4
+add r15, r0, \N
+add r16, r0, \D
+add r17, r0, \SP
+add r18, r0, \N
+add r19, r0, \3
+add r20, r0, \I
+add r21, r0, \7
+add r22, r0, \H
+add r23, r0, \#
+add r24, r0, \R
+add r25, r0, \SP
+add r26, r0, \D
+add r27, r0, \0
+add r28, r0, \SP
+add r29, r0, \T
+add r30, r0, \H
+add r31, r0, \E
+add r32, r0, \!
+add r33, r0, \R
+add r34, r0, \SP
+add r35, r0, \M
+add r36, r0, \A
+add r37, r0, \K
+add r38, r0, \E
+add r39, r0, \R
+add r40, r0, \$
+
+add r42, r0, \}
+add r43, r0, \LF
+
+// X-MAS{4ND N3I7H#R D0 THE!R H^CKER$}
+
+add r2, r0, 8
+lbl 01234
+
+	ld r1, [r2]
+	io 012, r1
+
+add r2, r2, 1
+cmpul r2, 44
++ jup 01234
+
+

@@ -1,0 +1,769 @@
+// Quirks
+// [OK ]  mandelbrot fractal 64x64 OK
+// [OK ]  conditional label OK
+// [OK ]  tape loop around OK
+// [OK ]  input check "yes"
+// [OK ]  reversed comparison	
+
+
+!define flagpart 01336
+!define bigmul8 02007
+!define bigmul_ret 02002
+!define toobig 02003
+
+!define k r11
+
+!define crh r12
+!define crl r13
+!define cih r14
+!define cil r15
+
+!define zrh r16
+!define zrl r17
+!define zih r18
+!define zil r19
+
+!define mag2h r20
+!define mag2l r21
+
+!define zrnh r22
+!define zrnl r23
+
+!define verdict r11
+
+!define rowloop 01011
+!define colloop 01012
+!define colloop_inc 01014
+!define iterloop 01013
+
+// ci  = 1110.10 000000 (-1.5)
+add cih, r0, 58
+add cil, r0, 0
+
+- lbl toobig // TRAP
+
+lbl rowloop
+
+	// cr = 1110.00 000000 (-2)
+	add crh, r0, 56
+	add crl, r0, 0
+
+	lbl colloop
+
+		// iter = 20
+		add k, r0, 15
+
+		// z = 0
+		add zrh, r0, 0
+		add zrl, r0, 0
+		add zih, r0, 0
+		add zil, r0, 0
+
+		lbl iterloop
+
+			- lbl toobig // TRAP
+			// z *= z
+			// zr <- zr*zr - zi*zi
+			// zi <- 2*zr*zi
+
+			// r1:r2 = bigmul8(zi, zi)
+			add r3, zih, 0
+			add r4, zil, 0
+			add r5, zih, 0
+			add r6, zil, 0
+
+			add r63, r0, 1
+			jdn bigmul8
+			lbl bigmul_ret, 1
+
+			// if zi * zi > 4, too big 
+			cmpug r1, 31
+			+ jdn toobig
+
+			// mag2 = zi * zi
+			add mag2h, r1, 0 
+			add mag2l, r2, 0
+
+			// r1:r2 = -r1:r2
+			sub r2, r0, r2
+			sub r1, r0, r1
+			cmpne r2, 0
+			+ add r1, r1, -1
+
+			// zrn = -zi*zi
+			add zrnh, r1, 0
+			add zrnl, r2, 0
+
+			// r1:r2 = bigmul8(zr, zr)
+			add r3, zrh, 0
+			add r4, zrl, 0
+			add r5, zrh, 0
+			add r6, zrl, 0
+
+			add r63, r0, 2
+			jdn bigmul8
+			lbl bigmul_ret, 2
+
+			// if zr * zr > 4, too big
+			cmpug r1, 31
+			+ jdn toobig
+
+			// mag2 += zr*zr
+			add mag2l, mag2l, r2
+			cmpul mag2l, r2
+			+ add mag2h, mag2h, 1
+			add mag2h, mag2h, r1
+
+			// if mag**2 > 4: print('-'), end iterloop
+			cmpug mag2h, 31
+			+ lbl toobig
+			+ jdn colloop_inc
+
+			// zrn += zr*zr -> zr*zr - zi*zi
+			add zrnl, zrnl, r2
+			cmpul zrnl, r2
+			+ add zrnh, zrnh, 1
+			add zrnh, zrnh, r1
+
+			// zi = 2*zr*zi
+			add r3, zih, 0
+			add r4, zil, 0
+			add r5, zrh, 0
+			add r6, zrl, 0
+
+			add r63, r0, 3
+			jdn bigmul8
+			lbl bigmul_ret, 3
+
+			// zi = r1:r2
+			add zih, r1, 0
+			add zil, r2, 0
+
+			// zi += r1:r2
+			add zil, zil, r2
+			cmpul zil, r2
+			+ add zih, zih, 1
+			add zih, zih, r1
+
+			// zr = zrn + cr
+			add zrl, zrnl, crl
+			cmpul zrl, crl
+			+ add zrnh, zrnh, 1
+			add zrh, zrnh, crh
+
+			// zi += ci
+			add zil, zil, cil
+			cmpul zil, cil
+			+ add zih, zih, 1
+			add zih, zih, cih
+
+
+		add k, k, -1
+		cmpne k, 0
+		+ jup iterloop
+
+	lbl colloop_inc
+
+	!define chose_verdict 01337
+	// select verdict from array
+	cmpul k, 1
+	+ add verdict, r0, \#
+	+ jdn chose_verdict
+	cmpug 4, k
+	+ add verdict, r0, \~
+	+ jdn chose_verdict
+	cmpul k, 9
+	+ add verdict, r0, \-
+	+ jdn chose_verdict
+	cmpug 12, k
+	+ add verdict, r0, 073 // comma but my dumb fucking assembler can't understand it as a character literal because it splits by , REEEEE
+	+ jdn chose_verdict
+	cmpul k, 15
+	+ add verdict, r0, \.
+	+ jdn chose_verdict
+	cmpug 18, k
+	+ add verdict, r0, \_
+	+ jdn chose_verdict
+	
+	add verdict, r0, \SP
+
+	lbl chose_verdict
+
+	io r0, 2, verdict
+
+	// cr += 0000.00 000110 (3/128)
+	add crl, crl, 6
+	cmpul crl, 6
+	+ add crh, crh, 1
+
+	- lbl toobig // TRAP
+	// cr != 0001.00 000000 (1)
+	cmpne crh, 4
+	+ jup colloop
+
+add r1, r0, \LF
+io r0, 2, r1
+
+// ci += 0000.00 001100 (3/64)
+add cil, cil, 12
+cmpul cil, 12
++ add cih, cih, 1
+
+// ci != 0001.10 000000 (1.5)
+cmpne cih, 6
++ jdn rowloop
+
+
+
+
+
+add r53, r0, \D
+jdn flagpart
+
+
+
+
+
+
+
+
+
+
+
+
+- lbl toobig // TRAP
+lbl bigmul8 // r1:r2 = r3:r4 * r5:r6
+
+
+// r8 = sign
+add r8, r0, 0
+add r1, r0, 0
+add r2, r0, 0
+
+cmpsl r3, r0
++ xor r8, r8, 1
++ xor r4, r4, -1
++ xor r3, r3, -1
++ add r4, r4, 1
++ cmpeq r4, 0
++ add r3, r3, 1
+
+cmpsl r5, 0
++ xor r8, r8, 1
++ xor r6, r6, -1
++ xor r5, r5, -1
++ add r6, r6, 1
++ cmpeq r6, 0
++ add r5, r5, 1
+
+
+// LO = r3 * r5 << 4  +  r3 * r6 >> 2  +  r4 * r5 >> 2  +  r4 * r6 >> 8
+
+shl r7, r3, 2
+shl r9, r5, 2
+fmu/0 r7, r9
+add r9, r0, 0  // r9 = carry
+add r2, r2, r7
+cmpul r2, r7
++ add r9, r9, 1
+
+add r7, r0, r3
+fmu/2 r7, r6
+add r2, r2, r7
+cmpul r2, r7
++ add r9, r9, 1
+
+add r7, r0, r4
+fmu/2 r7, r5
+add r2, r2, r7
+cmpul r2, r7
++ add r9, r9, 1
+
+add r7, r0, r4
+fmu/8 r7, r6
+add r2, r2, r7
+cmpul r2, r7
++ add r9, r9, 1
+
+// HI = r3 * r5 >> 2  +  r3 * r6 >> 8  +  r4 * r5 >> 8  +  LO_CARRY
+// Send carry and reset it
+add r1, r9, 0
+add r9, r0, 0
+
+add r7, r0, r3
+fmu/2 r7, r5
+add r1, r1, r7
+cmpul r1, r7
++ jup toobig // carry from HI to OVF
+
+add r7, r0, r3
+fmu/8 r7, r6
+add r1, r1, r7
+cmpul r1, r7
++ jup toobig // carry from HI to OVF
+
+add r7, r0, r4
+fmu/8 r7, r5
+add r1, r1, r7
+cmpul r1, r7
+add r52, r0, \N
++ jdn toobig // carry from HI to OVF
+
+// OF = r3 * r5 >> 8  +  HI_CARRY
+
+add r9, r3, 0
+fmu/8 r9, r5
+cmpne r9, 0
++ jdn toobig
+
+// restore sign
+cmpne r8, 0
++ xor r2, r2, -1
++ xor r1, r1, -1
++ add r2, r2, 1
++ cmpeq r2, 0
++ add r1, r1, 1
+
+jup bigmul_ret, r63
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+lbl flagpart
+
+
+// HEY
+add r1, r0, \H
+io r0, 2, r1
+add r1, r0, \E
+io r0, 2, r1
+add r1, r0, \Y
+io r0, 2, r1
+add r1, r0, \LF
+io r0, 2, r1
+
+// sleep(1.28)
+io r0, 4, r1
+
+!define sleep 03000
+lbl sleep
+io r1, 4, r0
+cmpug r1, 1
+- jup sleep
+
+
+// HEY KID
+add r1, r0, \H
+io r0, 2, r1
+add r1, r0, \E
+io r0, 2, r1
+add r1, r0, \Y
+io r0, 2, r1
+add r1, r0, \SP
+io r0, 2, r1
+add r51, r0, \E
+add r1, r0, 20 // K
+io r0, 2, r1
+add r1, r0, \I
+io r0, 2, r1
+add r1, r0, \D
+io r0, 2, r1
+add r1, r0, \LF
+io r0, 2, r1
+
+// sleep(1.28)
+io r0, 4, r1
+
+lbl sleep
+io r1, 4, r0
+cmpug r1, 1
+- jup sleep
+
+// WANT SUM
+add r1, r0, \W
+io r0, 2, r1
+add r1, r0, \A
+io r0, 2, r1
+add r1, r0, \N
+io r0, 2, r1
+add r1, r0, \T
+io r0, 2, r1
+add r1, r0, \SP
+io r0, 2, r1
+add r1, r0, \S
+io r0, 2, r1
+add r1, r0, \U
+io r0, 2, r1
+add r1, r0, \M
+io r0, 2, r1
+add r1, r0, \.
+io r0, 2, r1
+io r0, 2, r1
+io r0, 2, r1
+
+// sleep(1.28)
+io r0, 4, r1
+
+lbl sleep
+io r1, 4, r0
+cmpug r1, 1
+- jup sleep
+
+// FLAG???
+add r1, r0, \F
+io r0, 2, r1
+add r1, r0, \L
+io r0, 2, r1
+add r1, r0, \A
+io r0, 2, r1
+add r1, r0, \G
+io r0, 2, r1
+add r1, r0, \?
+io r0, 2, r1
+add r1, r0, \SP
+io r0, 2, r1
+add r1, r0, \LF
+io r0, 2, r1
+
+!define inputloop 03001
+lbl inputloop
+io r1, 0, r0
+cmpug r1, 3
+- jup inputloop
+
+
+io r60, 1, r0 // Y
+io r61, 1, r0 // E
+io r0, 1, r0  // S!, AH, EE, anything
+io r0, 1, r0
+
+!define sbox1 03002
+!define sbox_ret 03004
+// s[i+'Y'] - s[i^'E'] -> "X-MAS{EMU~L3"
+
+!define flagloop1 03003
+add r2, r0, 0
+lbl flagloop1
+
+	// 
+	add r1, r2, r60
+	add r63, r0, 1
+	jdn sbox1
+	lbl sbox_ret, 1
+
+	add r3, r0, r1
+
+	xor r1, r2, r61
+	add r63, r0, 2
+	jdn sbox1
+	lbl sbox_ret, 2
+
+	sub r3, r3, r1
+
+	io r0, 2, r3
+	st [r2 + 40], r3
+
+add r2, r2, 1
+cmpeq r2, 12
+- jup flagloop1
+
+
+// "GEND"
+add r1, r0, 0
+add r50, r0, 16
+lbl flagloop1
+
+	ld r2, [r1+50]
+	io r0, 2, r2
+
+add r1, r1, 1
+cmpeq r1, 4
+-jup flagloop1
+
+//for i in range(6):
+//	r7 = 0
+//	for j in range(6):
+//		r7 = r7 << 1
+//		r8 = r[j+1]
+//		r8 = r8 & 1
+//		r7 = r7 | r8
+//		r8 = r[j+1]
+//		r8 = r8 >> 1
+//		r[j+1] = r8
+//	out r7
+
+!define flagloop2 03005
+
+// 5~N#EV
+// EV#N~5
+// 001010
+// 011110
+// 110010
+// 110101
+// 111110
+// 010101
+
+
+add r1, r0, 10
+add r2, r0, 30
+add r3, r0, 50
+add r4, r0, 53
+add r5, r0, 62
+add r6, r0, 21
+
+add r10, r0, 0
+lbl flagloop1
+
+	add r7, r0, 0
+
+	add r12, r0, 0
+	lbl flagloop2
+
+		shl r7, r7, 1
+		ld r8, [r12 + 1]
+		and r8, r8, 1
+		or r7, r7, r8
+		ld r8, [r12 + 1]
+		shr r8, r8, 1
+		st [r12 + 1], r8
+
+	add r12, r12, 1
+	cmpeq r12, 6
+	- jup flagloop2
+
+	io r0, 2, r7
+
+add r10, r10, 1
+cmpeq r10, 6
+-jup flagloop1
+
+!define lastpart 03006
+!define haltend 03007
+jup lastpart
+lbl haltend
+halt
+
+
+
+// SBOX 1
+lbl sbox1
+cmpeq r1, 35
++ xor r1, r1, 40
++ jup sbox_ret, r63
+cmpeq r1, 29
++ xor r1, r1, 41
++ jup sbox_ret, r63
+cmpeq r1, 34
++ xor r1, r1, 52
++ jup sbox_ret, r63
+cmpeq r1, 16
++ xor r1, r1, 8
++ jup sbox_ret, r63
+cmpeq r1, 12
++ xor r1, r1, 54
++ jup sbox_ret, r63
+cmpeq r1, 13
++ xor r1, r1, 5
++ jup sbox_ret, r63
+cmpeq r1, 50
++ xor r1, r1, 18
++ jup sbox_ret, r63
+cmpeq r1, 0
++ xor r1, r1, 7
++ jup sbox_ret, r63
+cmpeq r1, 42
++ xor r1, r1, 35
++ jup sbox_ret, r63
+cmpeq r1, 49
++ xor r1, r1, 21
++ jup sbox_ret, r63
+cmpeq r1, 48
++ xor r1, r1, 11
++ jup sbox_ret, r63
+cmpeq r1, 31
++ xor r1, r1, 54
++ jup sbox_ret, r63
+cmpeq r1, 14
++ xor r1, r1, 59
++ jup sbox_ret, r63
+cmpeq r1, 28
++ xor r1, r1, 43
++ jup sbox_ret, r63
+cmpeq r1, 18
++ xor r1, r1, 20
++ jup sbox_ret, r63
+cmpeq r1, 61
++ xor r1, r1, 3
++ jup sbox_ret, r63
+cmpeq r1, 7
++ xor r1, r1, 4
++ jup sbox_ret, r63
+cmpeq r1, 53
++ xor r1, r1, 34
++ jup sbox_ret, r63
+cmpeq r1, 51
++ xor r1, r1, 32
++ jup sbox_ret, r63
+cmpeq r1, 54
++ xor r1, r1, 44
++ jup sbox_ret, r63
+cmpeq r1, 23
++ xor r1, r1, 43
++ jup sbox_ret, r63
+cmpeq r1, 63
++ xor r1, r1, 29
++ jup sbox_ret, r63
+cmpeq r1, 9
++ xor r1, r1, 16
++ jup sbox_ret, r63
+cmpeq r1, 26
++ xor r1, r1, 30
++ jup sbox_ret, r63
+cmpeq r1, 59
++ xor r1, r1, 46
++ jup sbox_ret, r63
+cmpeq r1, 3
++ xor r1, r1, 14
++ jup sbox_ret, r63
+cmpeq r1, 6
++ xor r1, r1, 45
++ jup sbox_ret, r63
+cmpeq r1, 32
++ xor r1, r1, 31
++ jup sbox_ret, r63
+cmpeq r1, 2
++ xor r1, r1, 42
++ jup sbox_ret, r63
+cmpeq r1, 41
++ xor r1, r1, 6
++ jup sbox_ret, r63
+cmpeq r1, 25
++ xor r1, r1, 41
++ jup sbox_ret, r63
+cmpeq r1, 55
++ xor r1, r1, 14
++ jup sbox_ret, r63
+cmpeq r1, 20
++ xor r1, r1, 58
++ jup sbox_ret, r63
+cmpeq r1, 10
++ xor r1, r1, 15
++ jup sbox_ret, r63
+cmpeq r1, 27
++ xor r1, r1, 45
++ jup sbox_ret, r63
+cmpeq r1, 11
++ xor r1, r1, 10
++ jup sbox_ret, r63
+cmpeq r1, 4
++ xor r1, r1, 25
++ jup sbox_ret, r63
+cmpeq r1, 58
++ xor r1, r1, 53
++ jup sbox_ret, r63
+cmpeq r1, 36
++ xor r1, r1, 52
++ jup sbox_ret, r63
+cmpeq r1, 60
++ xor r1, r1, 48
++ jup sbox_ret, r63
+cmpeq r1, 56
++ xor r1, r1, 56
++ jup sbox_ret, r63
+cmpeq r1, 8
++ xor r1, r1, 34
++ jup sbox_ret, r63
+cmpeq r1, 22
++ xor r1, r1, 24
++ jup sbox_ret, r63
+cmpeq r1, 19
++ xor r1, r1, 17
++ jup sbox_ret, r63
+cmpeq r1, 37
++ xor r1, r1, 55
++ jup sbox_ret, r63
+cmpeq r1, 17
++ xor r1, r1, 5
++ jup sbox_ret, r63
+cmpeq r1, 46
++ xor r1, r1, 13
++ jup sbox_ret, r63
+cmpeq r1, 39
++ xor r1, r1, 22
++ jup sbox_ret, r63
+cmpeq r1, 30
++ xor r1, r1, 15
++ jup sbox_ret, r63
+cmpeq r1, 57
++ xor r1, r1, 31
++ jup sbox_ret, r63
+cmpeq r1, 44
++ xor r1, r1, 30
++ jup sbox_ret, r63
+cmpeq r1, 5
++ xor r1, r1, 30
++ jup sbox_ret, r63
+cmpeq r1, 24
++ xor r1, r1, 43
++ jup sbox_ret, r63
+cmpeq r1, 40
++ xor r1, r1, 16
++ jup sbox_ret, r63
+cmpeq r1, 21
++ xor r1, r1, 31
++ jup sbox_ret, r63
+cmpeq r1, 33
++ xor r1, r1, 13
++ jup sbox_ret, r63
+cmpeq r1, 45
++ xor r1, r1, 51
++ jup sbox_ret, r63
+cmpeq r1, 52
++ xor r1, r1, 19
++ jup sbox_ret, r63
+cmpeq r1, 43
++ xor r1, r1, 22
++ jup sbox_ret, r63
+cmpeq r1, 47
++ xor r1, r1, 51
++ jup sbox_ret, r63
+cmpeq r1, 15
++ xor r1, r1, 42
++ jup sbox_ret, r63
+cmpeq r1, 1
++ xor r1, r1, 44
++ jup sbox_ret, r63
+cmpeq r1, 38
++ xor r1, r1, 7
++ jup sbox_ret, r63
+cmpeq r1, 62
++ xor r1, r1, 33
++ jup sbox_ret, r63
+
+lbl lastpart // R_D1E} = [58, 18, 27, 11, 18, 1] xor X-MAS{'
+
+
+xor r40, r40, 58
+xor r41, r41, 18
+xor r42, r42, 27
+xor r43, r43, 11
+xor r44, r44, 18
+xor r45, r45, 1
+
+and r1, r1, r0
+lbl flagloop1
+
+ld r2, [r1+40]
+io r0, 2, r2
+
+add r1, r1, 1
+cmpne r1, 6
++jup flagloop1
+
+
+jup haltend

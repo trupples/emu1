@@ -1,0 +1,1406 @@
+// load edge data to external memory
+
+
+// store XY data at 0..
+add r1, r0, 0
+io 16, r1
+io 17, r1
+io 18, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 7
+io 20, r1
+add r1, r0, 12
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 19
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 41
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 20
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 47
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 11
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 34
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 22
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 42
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 23
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 11
+io 20, r1
+add r1, r0, 8
+io 20, r1
+add r1, r0, 15
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 20
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 12
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 15
+io 20, r1
+add r1, r0, 46
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 9
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 14
+io 20, r1
+add r1, r0, 15
+io 20, r1
+add r1, r0, 10
+io 20, r1
+add r1, r0, 23
+io 20, r1
+add r1, r0, 24
+io 20, r1
+add r1, r0, 11
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 21
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 38
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 14
+io 20, r1
+add r1, r0, 47
+io 20, r1
+add r1, r0, 22
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 25
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 41
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 36
+io 20, r1
+add r1, r0, 35
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 9
+io 20, r1
+add r1, r0, 19
+io 20, r1
+add r1, r0, 40
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 15
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 35
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 47
+io 20, r1
+add r1, r0, 21
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 19
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 28
+io 20, r1
+add r1, r0, 12
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 41
+io 20, r1
+add r1, r0, 20
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 51
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 32
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 22
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 29
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 35
+io 20, r1
+add r1, r0, 34
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 46
+io 20, r1
+add r1, r0, 49
+io 20, r1
+add r1, r0, 10
+io 20, r1
+add r1, r0, 19
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 43
+io 20, r1
+add r1, r0, 11
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 51
+io 20, r1
+add r1, r0, 25
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 22
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 19
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 23
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 35
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 24
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 14
+io 20, r1
+add r1, r0, 32
+io 20, r1
+add r1, r0, 49
+io 20, r1
+add r1, r0, 10
+io 20, r1
+add r1, r0, 20
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 20
+io 20, r1
+add r1, r0, 46
+io 20, r1
+add r1, r0, 20
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 36
+io 20, r1
+add r1, r0, 11
+io 20, r1
+add r1, r0, 25
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 43
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 8
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 32
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 42
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 14
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 37
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 29
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 9
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 7
+io 20, r1
+add r1, r0, 11
+io 20, r1
+add r1, r0, 15
+io 20, r1
+add r1, r0, 12
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 36
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 12
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 25
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 49
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 19
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 42
+io 20, r1
+add r1, r0, 8
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 47
+io 20, r1
+add r1, r0, 22
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 34
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 19
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 22
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 49
+io 20, r1
+add r1, r0, 23
+io 20, r1
+add r1, r0, 29
+io 20, r1
+add r1, r0, 25
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 20
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 20
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 49
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 47
+io 20, r1
+add r1, r0, 14
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 7
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 40
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 21
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 22
+io 20, r1
+add r1, r0, 28
+io 20, r1
+add r1, r0, 25
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 25
+io 20, r1
+add r1, r0, 19
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 11
+io 20, r1
+add r1, r0, 23
+io 20, r1
+add r1, r0, 10
+io 20, r1
+add r1, r0, 21
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 49
+io 20, r1
+add r1, r0, 46
+io 20, r1
+add r1, r0, 21
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 37
+io 20, r1
+add r1, r0, 11
+io 20, r1
+add r1, r0, 24
+io 20, r1
+add r1, r0, 43
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 8
+io 20, r1
+add r1, r0, 14
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 23
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 21
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 43
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 15
+io 20, r1
+add r1, r0, 33
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 38
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 49
+io 20, r1
+add r1, r0, 29
+io 20, r1
+add r1, r0, 12
+io 20, r1
+add r1, r0, 9
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 10
+io 20, r1
+add r1, r0, 22
+io 20, r1
+add r1, r0, 21
+io 20, r1
+add r1, r0, 19
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 38
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 19
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 37
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 15
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 24
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 40
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 24
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 50
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 23
+io 20, r1
+add r1, r0, 14
+io 20, r1
+add r1, r0, 49
+io 20, r1
+add r1, r0, 24
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 43
+io 20, r1
+add r1, r0, 40
+io 20, r1
+add r1, r0, 25
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 35
+io 20, r1
+add r1, r0, 12
+io 20, r1
+add r1, r0, 26
+io 20, r1
+add r1, r0, 16
+io 20, r1
+add r1, r0, 34
+io 20, r1
+add r1, r0, 39
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 23
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 18
+io 20, r1
+add r1, r0, 45
+io 20, r1
+add r1, r0, 19
+io 20, r1
+add r1, r0, 17
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 23
+io 20, r1
+add r1, r0, 13
+io 20, r1
+add r1, r0, 44
+io 20, r1
+add r1, r0, 40
+io 20, r1
+
+
+////////////////////////////////////////// Store win text (46 cols x 3 6-bit rows) at 4096..
+add r1, r0, 1
+io 16, r1
+add r1, r0, 0
+io 17, r1
+io 18, r1
+
+add r1, r0, 28
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 32
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 60
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 7
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 1
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 15
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 1
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 32
+io 20, r1
+add r1, r0, 15
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 1
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 1
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 1
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 7
+io 20, r1
+add r1, r0, 56
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 32
+io 20, r1
+add r1, r0, 7
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 56
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 28
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 8
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 4
+io 20, r1
+add r1, r0, 28
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 14
+io 20, r1
+add r1, r0, 28
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 14
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 28
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 14
+io 20, r1
+add r1, r0, 28
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 14
+io 20, r1
+add r1, r0, 8
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 4
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 60
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 15
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 60
+io 20, r1
+add r1, r0, 7
+io 20, r1
+add r1, r0, 32
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 1
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 60
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 30
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 7
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 3
+io 20, r1
+add r1, r0, 32
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 1
+io 20, r1
+add r1, r0, 48
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 56
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 60
+io 20, r1
+add r1, r0, 31
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 62
+io 20, r1
+add r1, r0, 15
+io 20, r1
+add r1, r0, 63
+io 20, r1
+add r1, r0, 60
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+add r1, r0, 0
+io 20, r1
+
+
+!define star 01000
+!define star_ret 01001
+!define frame r60
+
+!define NEAR  02000
+!define LOOP1 02001
+!define LOOP2 02002
+!define LOOP3 02003
+!define LOOP4 02004
+
+
+lbl LOOP1
+add frame, frame, 1
+cmpeq frame, 54
++ add frame, r0, 0
+
+////////////////////////////////////////// Clear screen
+add r3, r0, 1
+add r1, r0, 0
+lbl LOOP2
+
+	io 025, r1
+	
+	add r2, r0, 0
+	lbl LOOP3
+
+		io 026, r2
+		io 027, r3
+
+	add r2, r2, 1
+	cmpeq r2, 0
+	-jup LOOP3
+
+add r1, r1, 1
+cmpeq r1, 0
+- jup LOOP2
+
+
+////////////////////////////////////////// Draw stars
+add r1, r0, 8
+add r2, r0, 4
+add r3, frame, 0
+add r63, r0, 1
+jdn star
+lbl star_ret, 1
+
+add r1, r0, 38
+add r2, r0, 6
+add r3, frame, 3
+add r63, r0, 2
+jdn star
+lbl star_ret, 2
+
+add r1, r0, 58
+add r2, r0, 9
+add r3, frame, 8
+add r63, r0, 3
+jdn star
+lbl star_ret, 3
+
+add r1, r0, 58
+add r2, r0, 33
+add r3, frame, 5
+add r63, r0, 4
+jdn star
+lbl star_ret, 4
+
+add r1, r0, 55
+add r2, r0, 46
+add r3, frame, 1
+add r63, r0, 5
+jdn star
+lbl star_ret, 5
+
+add r1, r0, 51
+add r2, r0, 59
+add r3, frame, 6
+add r63, r0, 6
+jdn star
+lbl star_ret, 6
+
+////////////////////////////////////////// draw rainbow WIN!!!
+add r50, r0, 48
+add r51, r0, 56
+add r52, r0, 42
+add r53, r0, 12
+add r54, r0, 14
+add r55, r0, 11
+add r56, r0, 3
+add r57, r0, 35
+add r58, r0, 50
+
+add r3, r0, 24 // step
+lbl LOOP2
+
+	// r4 = band color index = (frame + step) % 9
+	sub r4, frame, r3
+	lbl LOOP3
+	cmpug r4, 8
+	+ add r4, r4, -8
+	+ jup LOOP3
+	// r4 = band color
+	ld r4, [r4 + 50]
+
+	// iterate through all points
+	add r1, r0, 0
+	io 16, r1
+	io 17, r1
+	io 18, r1
+
+	lbl LOOP3
+		io r1, 19
+		io r2, 19
+
+		// end loop if we reached zeros
+		cmpeq r1, 0
+		- cmpeq r2, 0
+		+ jdn NEAR
+
+		// skip to next point if they'd wrap around after subtraction
+		cmpug r1, r3
+		+ sub r2, r0, r2
+		+ cmpug r2, r3
+		sub r2, r0, r2
+		- jup LOOP3
+
+		sub r1, r1, r3
+		add r2, r2, r3
+
+		io 21, r1
+		io 22, r2
+		io 23, r4
+	jup LOOP3
+	lbl NEAR
+
+add r3, r3, 63
+cmpeq r3, 0
+- jup LOOP2
+
+
+////////////////////////////////////////// draw black win
+add r1, r0, 0
+io 16, r1
+io 17, r1
+io 18, r1
+
+lbl LOOP2
+	io r1, 19
+	io r2, 19
+
+	cmpeq r1, 0
+	- cmpeq r2, 0
+	+ jdn NEAR
+
+	io 21, r1
+	io 22, r2
+	add r1, r0, 0
+	io 23, r1
+jup LOOP2
+lbl NEAR
+
+
+////////////////////////////////////////// draw white win
+add r1, r0, 1
+io 16, r1
+add r1, r0, 0
+io 17, r1
+io 18, r1
+
+// r1 = column
+// r2 = thick row counter
+// r3 = thick row value
+// r4 = thick row bit counter
+// r6 = row
+// r7 = color white
+add r7, r0, 63
+
+// for all 46 columns
+add r1, r0, 0
+lbl LOOP2
+
+	// set X position to col+7
+	add r1, r1, 8
+	io 21, r1
+	add r1, r1, -8
+
+	// set starting y position to 10
+	add r6, r0, 9
+
+	// for all 3 "thick rows"
+	add r2, r0, 3
+	lbl LOOP3
+
+		io r3, 19
+
+		// for all 6 bits of the "thick row"
+		add r4, r0, 6
+		lbl LOOP4
+
+			cmpug r3, 31
+			// draw at (col+7, r6)
+			+ io 22, r6
+			+ io 23, r7
+
+			// advance y position
+			add r6, r6, 1
+			// shift bitset
+			shl r3, r3, 1
+		add r4, r4, 63
+		cmpeq r4, 0
+		- jup LOOP4
+
+	add r2, r2, -1
+	cmpeq r2, 0
+	- jup LOOP3
+
+add r1, r1, 1
+cmpul r1, 46
++ jup LOOP2
+
+////////////////////////////////////////// draw white !!!
+add r1, r0, 0
+add r11, r0, 63
+lbl LOOP2
+
+	add r1, r1, 33
+	io 22, r1
+	add r1, r1, -33
+
+	add r2, r0, 17
+	add r3, r0, 18
+	add r4, r0, 19
+	add r5, r0, 31
+	add r6, r0, 32
+	add r7, r0, 33
+	add r8, r0, 45
+	add r9, r0, 46
+	add r10, r0, 47
+
+	cmpul r1, 12
+	- cmpeq r1, 14
+	+ io 21, r2
+	+ io 23, r11
+	+ io 21, r3
+	+ io 23, r11
+	+ io 21, r4
+	+ io 23, r11
+	+ io 21, r5
+	+ io 23, r11
+	+ io 21, r6
+	+ io 23, r11
+	+ io 21, r7
+	+ io 23, r11
+	+ io 21, r8
+	+ io 23, r11
+	+ io 21, r9
+	+ io 23, r11
+	+ io 21, r10
+	+ io 23, r11
+
+	cmpeq r1, 13
+	+ io 21, r2
+	+ io 23, r11
+	+ io 21, r3
+	+ io 23, r11
+	+ io 21, r5
+	+ io 23, r11
+	+ io 21, r6
+	+ io 23, r11
+	+ io 21, r8
+	+ io 23, r11
+	+ io 21, r9
+	+ io 23, r11
+
+	cmpeq r1, 15
+	+ io 21, r3
+	+ io 23, r11
+	+ io 21, r4
+	+ io 23, r11
+	+ io 21, r6
+	+ io 23, r11
+	+ io 21, r7
+	+ io 23, r11
+	+ io 21, r9
+	+ io 23, r11
+	+ io 21, r10
+	+ io 23, r11
+
+add r1, r1, 1
+cmpne r1, 17
++ jup LOOP2
+
+///// sleep and loop back
+add r1, r0, 1
+io 3, r1
+lbl LOOP2
+io r1, 3
+cmpul r1, 9
++ jup LOOP2
+jup LOOP1
+
+// draw star at x=r1, y=r2, z=r3, trash r4, r5, r6, return to r63
+lbl star
+
+cmpug r3, 8
++ add r3, r3, -9
++ jup star
+
+cmpeq r3, 0
++ jup star_ret, r63
+
+io 025, r1
+io 026, r2
+
+cmpeq r3, 1
++ add r4, r0, 63
++ io 027, r4
++ jup star_ret, r63
+
+cmpeq r3, 2
++ add r4, r0, 62
++ io 027, r4
++ add r4, r0, 63
++ add r5, r1, 1
++ io 025, r5
++ io 027, r4
++ add r5, r1, 63
++ io 025, r5
++ io 027, r4
++ io 025, r1
++ add r5, r2, 1
++ io 026, r5
++ io 027, r4
++ add r5, r2, 63
++ io 026, r5
++ io 027, r4
++ jup star_ret, r63
+
+cmpeq r3, 3
++ add r4, r0, 61
++ add r6, r0, 63
+
++ add r5, r1, 1
++ io 025, r5
++ io 027, r4
++ add r5, r1, 2
++ io 025, r5
++ io 027, r6
+
++ add r5, r1, 63
++ io 025, r5
++ io 027, r4
++ add r5, r1, 62
++ io 025, r5
++ io 027, r6
+
++ io 025, r1
+
++ add r5, r2, 1
++ io 026, r5
++ io 027, r4
++ add r5, r2, 2
++ io 026, r5
++ io 027, r6
+
++ add r5, r2, 63
++ io 026, r5
++ io 027, r4
++ add r5, r2, 62
++ io 026, r5
++ io 027, r6
+
++ jup star_ret, r63
+
+cmpeq r3, 4
++ add r4, r0, 46
++ add r5, r1, 2
++ io 025, r5
++ io 027, r4
++ add r5, r1, 62
++ io 025, r5
++ io 027, r4
++ io 025, r1
++ add r5, r2, 2
++ io 026, r5
++ io 027, r4
++ add r5, r2, 62
++ io 026, r5
++ io 027, r4
++ jup star_ret, r63
+
+cmpeq r3, 5
++ add r4, r0, 22
++ add r5, r1, 2
++ io 025, r5
++ io 027, r4
++ add r5, r1, 62
++ io 025, r5
++ io 027, r4
++ io 025, r1
++ add r5, r2, 2
++ io 026, r5
++ io 027, r4
++ add r5, r2, 62
++ io 026, r5
++ io 027, r4
++ jup star_ret, r63
+
+jup star_ret, r63

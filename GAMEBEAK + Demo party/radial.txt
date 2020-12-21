@@ -1,0 +1,47 @@
+!define LOOP1 01001
+!define LOOP2 01002
+add r50, r0, 48
+add r51, r0, 56
+add r52, r0, 42
+add r53, r0, 12
+add r54, r0, 14
+add r55, r0, 11
+add r56, r0, 3
+add r57, r0, 35
+add r58, r0, 50
+
+add r1, r0, 0
+lbl LOOP1
+
+	add r2, r0, 0
+	lbl LOOP2
+
+		add r3, r1, 32
+		add r4, r2, 32
+
+		fms/6 r3, r3
+		fms/6 r4, r4
+		add r3, r3, r4
+
+		add r3, r3, 1
+
+		lbl 01003
+		cmpug r3, 8
+		+ add r3, r3, -9
+		+ jup 01003
+
+		ld r3, [r3 + 50]
+
+		io 21, r1
+		io 22, r2
+		io 23, r3
+
+	add r2, r2, 1
+	cmpeq r2, 0
+	- jup LOOP2
+
+add r1, r1, 1
+cmpeq r1, 0
+- jup LOOP1
+
+io r0, 3
